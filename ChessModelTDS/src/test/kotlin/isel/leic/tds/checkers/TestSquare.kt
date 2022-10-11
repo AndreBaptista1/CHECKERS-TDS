@@ -35,14 +35,14 @@ class TestSquare {
         assertNull("3$".toSquareOrNull())
         assertNull("${BOARD_DIM+1}a".toSquareOrNull())
         assertNull("1${'a'+ BOARD_DIM}".toSquareOrNull())
-    }
+    }*/
     @Test
     fun `All valid squares`() {
         val all = Square.values
         assertEquals(BOARD_DIM * BOARD_DIM, all.size)
         assertEquals("${BOARD_DIM}a", all.first().toString())
         assertEquals("1${'a'+ BOARD_DIM-1}", all.last().toString())
-    }
+    }/*
     @Test
     fun `Identity of squares`() {
         val row = 3.toRowOrNull()

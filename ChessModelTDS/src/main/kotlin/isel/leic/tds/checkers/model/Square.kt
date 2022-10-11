@@ -3,7 +3,7 @@ package isel.leic.tds.checkers.model
 class Square(){
     var row = Row(0)
     var column = Column('a')
-    constructor(row:Row, column:Column) : this() {
+    constructor(row:Row, column:BetaColumn) : this() {
         this.row = row
         this.column = column
     }
@@ -14,7 +14,7 @@ class Square(){
     }
     companion object {
         val values
-            get() = (0..BOARD_DIM).map{Square(it.indexToRow(),it.indexToColumn())}
+            get() = Row.values.flatMap { row -> BetaColumn.values.map { col-> Square(row,col)}}   //(0..BOARD_DIM).map{}//Square(it.indexToRow(),it.indexToColumn())}
 
     }
 

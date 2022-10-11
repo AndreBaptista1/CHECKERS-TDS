@@ -17,6 +17,7 @@ class TestRow {
     @Test
     fun `Index to Row with number property`() {
         val row = 3.indexToRow()
+        val x = Row.values
         assertEquals(BOARD_DIM-3 ,row.number)
     }
     @Test

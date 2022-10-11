@@ -10,6 +10,7 @@ import kotlin.test.*
 class TestColumn {
     @Test
     fun `Symbol to Column with index property`() {
+        val x = BetaColumn.values
         val column = 'c'.toColumnOrNull()
         assertNotNull(column)
         assertEquals(2, column.index)
@@ -39,8 +40,8 @@ class TestColumn {
     }
     @Test
     fun `Get all valid values of Column`() {
-        assertEquals(BOARD_DIM, Column.values.size)
-        assertEquals(List(BOARD_DIM){'a'+it}, Column.values.map{ it.symbol })
+        assertEquals(BOARD_DIM, BetaColumn.values.size)
+        assertEquals(List(BOARD_DIM){'a'+it}, BetaColumn.values.map{ it.symbol })
     }
     @Test
     fun `All invalid columns`() {
