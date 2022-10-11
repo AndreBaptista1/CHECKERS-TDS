@@ -1,29 +1,30 @@
 package isel.leic.tds.checkers.model
 
 class Square(){
-    var r = Row(0)
-    var c = Column('a')
+    var row = Row(0)
+    var column = Column('a')
     constructor(row:Row, column:Column) : this() {
-        r = row
-        c = column
+        this.row = row
+        this.column = column
     }
 
     constructor(row:Int, column: Int): this(){
-        r = row.indexToRow()
-        c = column.indexToColumn()
+        this.row = row.indexToRow()
+        this.column = column.indexToColumn()
     }
     companion object {
-        //val values =
+        val values
+            get() = (0..BOARD_DIM).map{Square(it.indexToRow(),it.indexToColumn())}
 
     }
 
     override fun toString(): String {
-        return "${r.number}${c.symbol}"
+        return "${row.number}${column.symbol}"
     }
 
 
-    val black: Boolean = r.index % 2 != 0 && c.index % 2 != 0
-                        || r.index % 2 == 0 && c.index % 2 == 0
+    val black: Boolean = row.index % 2 != 0 && column.index % 2 != 0
+                        || row.index % 2 == 0 && column.index % 2 == 0
 
 
 
@@ -31,11 +32,5 @@ class Square(){
 
 
 fun String.toSquareOrNull():Square? {
-    println(this[0])
-    Square().c = this[0]
-
-
-
-
-
+    return null
 }
