@@ -1,20 +1,13 @@
 package isel.leic.tds.checkers.model
 
-class Square(){
-    var row = Row(0)
-    var column = Column('a')
-    constructor(row:Row, column:BetaColumn) : this() {
-        this.row = row
-        this.column = column
-    }
+class Square private constructor(val row:Row, val column: Column){
 
-    constructor(row:Int, column: Int): this(){
-        this.row = row.indexToRow()
-        this.column = column.indexToColumn()
-    }
     companion object {
-        val values
-            get() = Row.values.flatMap { row -> BetaColumn.values.map { col-> Square(row,col)}}   //(0..BOARD_DIM).map{}//Square(it.indexToRow(),it.indexToColumn())}
+        val values = Row.values.flatMap { row -> Column.values.map { col-> Square(row,col)}}
+        operator fun invoke(row: Row, column: Column) = values.first{it.row == row && it.column == column }
+
+        operator fun invoke(row:Int, column:Int) = values.first{it.row == row.indexToRow() && it.column== column.indexToColumn()}
+          //(0..BOARD_DIM).map{}//Square(it.indexToRow(),it.indexToColumn())}
 
     }
 
@@ -23,14 +16,12 @@ class Square(){
     }
 
 
-    val black: Boolean = row.index % 2 != 0 && column.index % 2 != 0
-                        || row.index % 2 == 0 && column.index % 2 == 0
+    val black: Boolean = (row.index%2!=0 && column.index%2==0) || (row.index%2==0 && column.index%2!=0)
 
 
+    val white: Boolean = !black
 
 }
 
 
-fun String.toSquareOrNull():Square? {
-    return null
-}
+fun String.toSquareOrNull():Square? = Square.values.firstOrNull{it.toString()==this}

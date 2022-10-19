@@ -18,7 +18,7 @@ class TestSquare {
         println(square.toString())
         assertEquals("${BOARD_DIM-1}${'a'+2}", square.toString())
         assertTrue(square.black)
-    }/*
+    }
     @Test
     fun `String to a white square and use index values`() {
         assertTrue(BOARD_DIM>3)
@@ -35,14 +35,14 @@ class TestSquare {
         assertNull("3$".toSquareOrNull())
         assertNull("${BOARD_DIM+1}a".toSquareOrNull())
         assertNull("1${'a'+ BOARD_DIM}".toSquareOrNull())
-    }*/
+    }
     @Test
     fun `All valid squares`() {
         val all = Square.values
         assertEquals(BOARD_DIM * BOARD_DIM, all.size)
         assertEquals("${BOARD_DIM}a", all.first().toString())
         assertEquals("1${'a'+ BOARD_DIM-1}", all.last().toString())
-    }/*
+    }
     @Test
     fun `Identity of squares`() {
         val row = 3.toRowOrNull()
@@ -55,6 +55,6 @@ class TestSquare {
         val s2 = Square(row,col)
         assertSame(square,s1)
         assertSame(square,s2)
-    }*/
+    }
 }
 
